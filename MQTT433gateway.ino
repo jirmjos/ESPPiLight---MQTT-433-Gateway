@@ -41,6 +41,7 @@
 const char* ssid = mySSID;
 const char* password = myWIFIPASSWD;
 const char* mqtt_server = myMQTT_BROCKER;
+const char* mqtt_server_port = myMQTT_BROCKER_Port;
 
 #define RECEIVER_PIN 12 //avoid 0, 2, 15, 16
 #define TRANSMITTER_PIN 4
@@ -60,7 +61,7 @@ String otaURL = "";
 void setup() {
   Serial.begin(115200);
   setup_wifi();
-  mqtt.setServer(mqtt_server, 1883);
+  mqtt.setServer(mqtt_server, mqtt_server_port);
   mqtt.setCallback(mqttCallback);
   pinMode(RECEIVER_PIN, INPUT_PULLUP); //5V protection with reverse diode needs pullup
   rf.setCallback(rfCallback);
